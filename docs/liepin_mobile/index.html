@@ -146,7 +146,88 @@
         </div>
     </div>
 </div>
-
+<div class="content-box">
+    <h3 class="content-title">05 弹窗</h3>
+    <div class="content">
+      <h4>1、一般弹框</h4>
+        <button onclick="dynamic.popupBtn1();">普通弹窗</button>
+        <button onclick="dynamic.popupBtn2();">带标题弹窗</button>
+        <button onclick="dynamic.popupBtn3();">倒计时跳转弹窗</button>
+        <button onclick="dynamic.popupBtn5();">带关闭的提醒弹框</button>
+        <button onclick="dynamic.popupBtn6();">多条提醒弹框</button>
+        <h4>代码示例： 自定义popupBtn1方法</h4>
+        <p>popupBtn1: function(){</p>
+        <p>&nbsp;&nbsp;&nbsp;globalModal.configure = {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: '1',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: '内容',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;btnTxt: '知道了',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link: '' </p>
+        <p>&nbsp;&nbsp;&nbsp;};</p>
+        <p>globalModal.showModal();</p>
+        <p>},</p>
+        <h4>说明：修改对象globalModal.configure的值 </h4>
+        <p>type:弹窗类型  1 普通弹窗  2 带标题的弹窗  3 倒计时跳转弹窗</p>
+        <p>title:标题  只有类型2的弹窗需要</p>
+        <p>content:提示内容  可以是html或文字提示  类型3的弹窗不支持</p>
+        <p>btnTxt: 按钮文字</p>
+        <p>link: 按钮连接  如果仅仅是关闭不需要传值</p>
+      <h4>2、弱类型弹框</h4>
+        <button onclick="popMsg('发布成功','success');">弱类型提醒</button>
+        <h4>代码示例：全局方法popMsg(msg,type)</h4>
+        <p>popMsg(msg,type)</p>
+        <h4>参数说明：</h4>
+        <p>msg:字符串类型，提示文字，必选</p>
+        <p>type:字符串类型，'success'：成功图标；'fail':失败图标；'notice':警告图标，可选（不填则不显示图标）</p>
+        <h4>3、底部弹框</h4>
+        <button onclick="dynamic.popupBtn4(1);">猎聘中</button>
+        <button onclick="dynamic.popupBtn4(2);">暂停</button>
+        <h4>代码示例： 自定义popupBtn4方法</h4>
+        <p>popupBtn4: function(type){</p>
+        <p>&nbsp;&nbsp;&nbsp;globalModal.configure = {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: '4',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: '职位状态修改',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content: '职位状态修改后，会...',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;areaTxt: '请输入修改职位状态的原因',</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dbtnTxt: ['确定'，'取消'],</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link: '#' </p>
+        <p>&nbsp;&nbsp;&nbsp;};</p>
+        <p>globalModal.showModal(callback,type);</p>
+        <p>},</p>
+        <h4>属性说明：修改对象globalModal.configure的值 </h4>
+        <p>type:弹窗类型 4 状态修改弹框</p>
+        <p>title:标题  弹窗标题</p>
+        <p>content:提示内容  可以是html或文字提示  类型3的弹窗不支持</p>
+        <p>dbtnTxt: 多按钮文字，类型为数组</p>
+        <p>areaTxt: 输入框中placeholder文字</p>
+        <p>link: 按钮连接  如果仅仅是关闭不需要传值</p>
+        <h4>参数说明：callback 为回调函数，type 为弹框类型：</h4>
+        <p>callback代码示例：</p>
+        <p>&nbsp;&nbsp;&nbsp;callback = {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yes: function(value,$layer){</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 关闭自身弹框</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$layer.close()</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p>&nbsp;&nbsp;&nbsp;};</p>
+        <p>type: 1 改为猎聘中 2 改为暂停</p>
+        <h4>4、公共选择弹框</h4>
+        <button onclick="globalModal.iosSelectSalary(dynamic.select_salary,'iosSelectSalary');" id="iosSelectSalary" data-id="10003" data-value="8-12万">年薪选择</button>
+        <button onclick="globalModal.iosSelectArea(dynamic.select_area,'iosSelectArea');" id="iosSelectArea" data-city="23840000" data-province="13830000">地址选择</button>
+        <button onclick="globalModal.iosSelectIndustry(dynamic.select_industry,'iosSelectIndustry');" id="iosSelectIndustry" data-industry="H00070005" data-industrymain="H0007">行业选择</button>
+        <button onclick="globalModal.iosSelectPosition(dynamic.select_position,'iosSelectPosition');" id="iosSelectPosition" data-positionfirst="I0001" data-positionsecond="I00010004" data-positionthird="I000100040001" data-positionfourth="Z00010002">职位选择</button>
+        <button onclick="globalModal.iosSelectDate(dynamic.select_date,'iosSelectDate');" id="iosSelectDate">日期选择</button>
+        <button onclick="globalModal.iosSelectTime(dynamic.select_time,'iosSelectTime');" id="iosSelectTime">时间选择</button>
+        <p>代码示例：globalModal.iosSelectSalary(dynamic.select_salary,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'iosSelectSalary');</p>
+        <h4>使用说明：参数1：选择器回调函数， 必选；参数2：触发元素ID，必选；</h4>
+        <p>callback代码示例：</p>
+        <p>&nbsp;&nbsp;&nbsp;callback = {</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yes: function(value){</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 打印选择结果</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(value)</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+        <p>&nbsp;&nbsp;&nbsp;};</p>
+    </div>
+</div>
 <div class="content-box">
     <h3 class="content-title">06 其他规范</h3>
     <div class="content" style="margin-bottom:2rem;">
